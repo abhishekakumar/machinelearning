@@ -33,8 +33,9 @@ def test(dataset):
 			test_size = 1 - train_percent,
 			random_state = 42,
         )
-
+		print "Training on percent: ", train_percent
 		for c_val in c_values:
+			print "	Testing c_val: ", c_val
 			josh_svm = kernel_svm.svm_estimator(c_val, kernel)
 			scores = cross_val_score(josh_svm, x_train_main, y_train_main, cv=k_fold_values[dataset],
 						scoring='accuracy')
@@ -80,4 +81,4 @@ def test(dataset):
 # Example test. Run in main file :)
 if __name__ == "__main__":
 	datasets = ['breast_cancer', 'digits', 'forest_mapping']
-	kernel_svm_test(datasets[2])
+	test(datasets[0])

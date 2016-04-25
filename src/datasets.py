@@ -38,18 +38,19 @@ def get_digits_data():
     # X = []
     # y = []
 
-    # with open(os.path.join(subfolder, 'optdigits.tra.txt'), 'r') as text_file:
-    #     for line in text_file:
-    #         if line.startswith('0') or line.startswith('1'):
-    #             line = line[:-1]  # remove \n here
-    #             X_temp.extend(list(line))
-    #         elif line.startswith(' '):
-    #             line = line[1:-1]
-    #             y_temp.append(line)
-    #             X.append(X_temp)
-    #             y.append(y_temp)
-    #             X_temp = []
-    #             y_temp = []
+    with open(os.path.join(subfolder, 'optdigits-orig.tra'), 'r') as text_file:
+        for line in text_file:
+            if line.startswith('0') or line.startswith('1'):
+                line = line[:-1]  # remove \n here
+                X_temp.extend(list(line))
+            elif line.startswith(' '):
+                line = line[1:-1]
+                y_temp.append(line)
+                X_temp = map(int, X_temp)
+                y_temp = map(int, y_temp)
+                X.append(X_temp)
+                y.append(y_temp)
+                X_temp = []
 
     # x_data = pd.DataFrame(X)
     # y_data = pd.DataFrame(y)
