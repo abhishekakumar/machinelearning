@@ -17,7 +17,7 @@ def test(dataset):
 	x_data, y_data = ds.retrieve_data_sets(dataset)
 	k_fold_values = {'breast_cancer': 10, 'digits': 10, 'forest_mapping': 6}
 	C_values_by_dataset = {'breast_cancer': 1000, 'digits': 1000, 'forest_mapping': 1000}
-	train_percentage = [0.1, 0.2, 0.2, 0.3, 0.4, 0.5]
+	train_percentage = [0.1, 0.2, 0.3, 0.4, 0.5]
 	training_percentage = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 	c_values = [0.001, 0.01, 0.1, 1, 10, 50, 100, 500, 1000, 2000]
 

@@ -158,14 +158,14 @@ class multiclass_svm:
 	###
 	### read kernel_svm __init__ for details
 	### train_y[i] = k if pattern i's class is `k'
-	### k = 1, 2, ..., M (where M is the number of classes)
+	### k = 0, 1, ..., M-1 (where M is the number of classes)
 	###
 	def __init__(self, train_x, train_y, N, K, M, C, kernel):
 		self.M = M
 		self.train_x = train_x
 		self.train_y = train_y
 		svms = []
-		for i in range(1, M+1):
+		for i in range(M):
 			# create SVM for class i
 			# (one-versus-all)
 			i_train_y = np.copy(train_y)
@@ -183,15 +183,15 @@ class multiclass_svm:
 		self.svms = svms
 
 
-	# returns an integer between [1, M]
+	# returns an integer between [0, M-1]
 	# which is the class that this SVM thinks
 	# `pattern' is a part of
 	def classify(self, pattern):
 		# a very small value
 		val_large = -10000.0
 		class_large = 0.0
-		for i in range(1, self.M+1):
-			svm = self.svms[i-1]
+		for i in range(self.M):
+			svm = self.svms[i]
 			val = svm.classify(pattern)
 			if (val > val_large):
 				val_large = val
@@ -228,7 +228,7 @@ class svm_estimator(BaseEstimator, ClassifierMixin):
 			y.as_matrix().astype(int), 
 			N, 
 			K, 
-			M, 
+			M+1, 
 			self.C, 
 			self.kern,
 		)
