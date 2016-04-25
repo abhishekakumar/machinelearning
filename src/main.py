@@ -14,6 +14,13 @@ warnings.filterwarnings("ignore")
 
 
 def main():
+    datasets = ['breast_cancer', 'digits', 'forest_mapping']
+    for current_dataset in datasets:
+        classify(current_dataset);
+    # classify('digits')
+
+def classify(current_dataset):
+    print current_dataset
     k_fold_values = {'breast_cancer': 10, 'digits': 10, 'forest_mapping': 6}
 
     # Set the values below from Cross Validation Graphs
@@ -21,13 +28,13 @@ def main():
     estimator_values_by_dataset = {'breast_cancer': 50, 'digits': 1000, 'forest_mapping': 50}
     max_depth_values_by_dataset = {'breast_cancer': 10, 'digits': 50, 'forest_mapping': 10}
 
-    datasets = ['breast_cancer', 'digits', 'forest_mapping']
-    current_dataset = datasets[2]  # change accordingly
+
+    #current_dataset = datasets[2]  # change accordingly
     x_data, y_data = ds.retrieve_data_sets(current_dataset)
 
     train_percentage = [0.1, 0.2, 0.3, 0.4, 0.5]
     training_percentage = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]  # For plotting the training accuracy
-    c_values = [0.001, 0.01, 0.1, 1, 10, 50, 100, 500, 1000, 2000]
+    c_values = [0.01, 0.1, 1, 10, 50, 100, 1000]
 
     ##############################
     ### Support Vector Machine ###
@@ -94,8 +101,8 @@ def main():
     ###### Random Forests #######
     #############################
 
-    estimators = [20, 50, 100, 500, 1000, 5000]
-    max_depths = [10, 50, 100, 200, 500, 1000]
+    estimators = [10, 20, 50, 100, 500, 1000]
+    max_depths = [5, 10, 20, 50, 100, 200]
 
     print '\nRandom Forests'
 
@@ -177,25 +184,12 @@ def main():
     ####### Deep Learning ########
     ##############################
     print 'Deep Learning'
-    print x_data.shape, y_data.shape
-    for train_percent in train_percentage:
-        print train_percent
-        x_train_main, x_test, y_train_main, y_test = train_test_split(
-            x_data,
-            y_data['class'],
-            test_size=1 - train_percent,
-            random_state=42
-        )
-        dl.deeplearning_classify(current_dataset,
-            x_train_main.as_matrix(), y_train_main.as_matrix(),
-            x_test.as_matrix(), y_test.as_matrix())
+    dl.deeplearning_main(current_dataset, x_data, y_data)
 
-
-    ####
-    ##
-    ## CUSTOM MULTI-CLASS KERNEL SVM
-    ##
-    ####
+    ##############################
+    ######## MULTI-CLASS #########
+    ######## KERNEL SVM  #########
+    ##############################
     print "----Running Custom Multi-Class Kernel SVM----"
     kernel_svm_test.test(current_dataset)
 

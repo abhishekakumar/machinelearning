@@ -2,6 +2,28 @@ from keras.models import Sequential
 from keras.layers.core import Dense, Activation,Dropout
 from keras.optimizers import SGD, Adam, RMSprop
 from keras.utils import np_utils
+from sklearn.cross_validation import train_test_split
+
+def deeplearning_main(current_dataset, x_data, y_data):
+    #print 'Deep Learning'
+    print x_data.shape, y_data.shape
+    train_percentage = [0.1, 0.2, 0.3, 0.4, 0.5]
+    if current_dataset == 'breast_cancer' :
+        print 'converting classes to 0-1'
+        y_data = y_data.replace(2,0)
+        y_data = y_data.replace(4,1)
+
+    for train_percent in train_percentage:
+        print train_percent
+        x_train_main, x_test, y_train_main, y_test = train_test_split(
+            x_data,
+            y_data['class'],
+            test_size=1 - train_percent,
+            random_state=42
+        )
+        deeplearning_classify(current_dataset,
+            x_train_main.as_matrix(), y_train_main.as_matrix(),
+            x_test.as_matrix(), y_test.as_matrix())
 
 def deeplearning_classify (dataset_name,X_Train, Y_train,X_Test, Y_test):
     if dataset_name == 'breast_cancer':
