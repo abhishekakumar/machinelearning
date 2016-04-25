@@ -46,6 +46,8 @@ def get_digits_data():
             elif line.startswith(' '):
                 line = line[1:-1]
                 y_temp.append(line)
+                X_temp = map(int, X_temp)
+                y_temp = map(int, y_temp)
                 X.append(X_temp)
                 y.append(y_temp)
                 X_temp = []

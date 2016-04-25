@@ -224,8 +224,8 @@ class svm_estimator(BaseEstimator, ClassifierMixin):
 		self.K = K
 		self.M = M
 		self.backing_svm = multiclass_svm(
-			np.matrix(X), 
-			np.matrix(y).T, 
+			np.matrix(X).astype(int), 
+			np.matrix(y).T.astype(int), 
 			N, 
 			K, 
 			M, 
@@ -239,7 +239,7 @@ class svm_estimator(BaseEstimator, ClassifierMixin):
 		to_classify = x_mat.shape[0]
 		out = np.zeros( (to_classify, 1) )
 		for i in range(to_classify):
-			out[i,0] = self.backing_svm.classify(x_mat[i,])
+			out[i,0] = self.backing_svm.classify(x_mat[i,].astype(int))
 		return out
 
 ###
