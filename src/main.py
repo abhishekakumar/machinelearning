@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import datasets as ds
 import deeplearning as dl
 import pylab
+import kernel_svm_test
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -188,6 +189,15 @@ def main():
         dl.deeplearning_classify(current_dataset,
             x_train_main.as_matrix(), y_train_main.as_matrix(),
             x_test.as_matrix(), y_test.as_matrix())
+
+
+    ####
+    ##
+    ## CUSTOM MULTI-CLASS KERNEL SVM
+    ##
+    ####
+    print "----Running Custom Multi-Class Kernel SVM----"
+    kernel_svm_test.test(current_dataset)
 
 if __name__ == "__main__":
     main()
