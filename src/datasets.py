@@ -33,27 +33,31 @@ def get_breast_cancer_data():
 
 def get_digits_data():
     subfolder = 'train_data/digits'
-    X_temp = []
-    y_temp = []
-    X = []
-    y = []
+    # X_temp = []
+    # y_temp = []
+    # X = []
+    # y = []
 
-    with open(os.path.join(subfolder, 'optdigits-orig.tra'), 'r') as text_file:
-        for line in text_file:
-            if line.startswith('0') or line.startswith('1'):
-                line = line[:-1]  # remove \n here
-                X_temp.extend(list(line))
-            elif line.startswith(' '):
-                line = line[1:-1]
-                y_temp.append(line)
-                X.append(X_temp)
-                y.append(y_temp)
-                X_temp = []
-                y_temp = []
+    # with open(os.path.join(subfolder, 'optdigits.tra.txt'), 'r') as text_file:
+    #     for line in text_file:
+    #         if line.startswith('0') or line.startswith('1'):
+    #             line = line[:-1]  # remove \n here
+    #             X_temp.extend(list(line))
+    #         elif line.startswith(' '):
+    #             line = line[1:-1]
+    #             y_temp.append(line)
+    #             X.append(X_temp)
+    #             y.append(y_temp)
+    #             X_temp = []
+    #             y_temp = []
 
-    x_data = pd.DataFrame(X)
-    y_data = pd.DataFrame(y)
-    y_data.columns = ['class']
+    # x_data = pd.DataFrame(X)
+    # y_data = pd.DataFrame(y)
+    data = pd.read_csv(os.path.join(subfolder,'optdigits.tra.txt'), sep = ',', header = None)
+    x_data = data.ix[:,0:63]
+    y_data = data.ix[:,64]
+    y_data = y_data.to_frame('class')
+    #print x_data.head(), y_data.head()
     return x_data, y_data
 
 
