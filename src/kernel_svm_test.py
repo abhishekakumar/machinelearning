@@ -47,7 +47,7 @@ def test(dataset):
 		svm1.set_xlabel('C Values')
 		svm1.set_ylabel('Mean Accuracy Scores')
 		svm1.set_xscale('log')
-		svm1.set_title('SVM - C values vs accuracy', fontsize=12)
+		svm1.set_title('<<CUSTOM SVM>> - C values vs accuracy', fontsize=12)
 		pylab.show()
 
 	# Now test with actually chosen C-values
@@ -73,7 +73,7 @@ def test(dataset):
 	svm2.plot(training_percentage, test_scores, label="test percentage")
 	svm2.set_xlabel('Training Data Fraction')
 	svm2.set_ylabel('Accuracy - Test Set')
-	svm2.set_title('SVM - Accuracy on Test Set', fontsize=12)
+	svm2.set_title('<<CUSTOM>> SVM - Accuracy on Test Set', fontsize=12)
 	pylab.show()
 
 
