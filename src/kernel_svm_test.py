@@ -17,7 +17,7 @@ def test(dataset):
 	x_data, y_data = ds.retrieve_data_sets(dataset)
 	k_fold_values = {'breast_cancer': 10, 'digits': 10, 'forest_mapping': 6}
 	C_values_by_dataset = {'breast_cancer': 1000, 'digits': 1000, 'forest_mapping': 1000}
-	train_percentage = [0.1, 0.2, 0.3, 0.4, 0.5]
+	train_percentage = [0.1, 0.2, 0.2, 0.3, 0.4, 0.5]
 	training_percentage = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 	c_values = [0.001, 0.01, 0.1, 1, 10, 50, 100, 500, 1000, 2000]
 
@@ -32,7 +32,9 @@ def test(dataset):
 			y_data['class'],
 			test_size = 1 - train_percent,
 			random_state = 42,
+        
         )
+
 		print "Training on percent: ", train_percent
 		for c_val in c_values:
 			print "	Testing c_val: ", c_val
@@ -61,7 +63,7 @@ def test(dataset):
 			test_size = 1 - train_percent,
 			random_state = 42,
 		)
-
+		print "Training with c_val: ", C_choosen, " on train_percent: ", train_percent
 		josh_svm = kernel_svm.svm_estimator(C_choosen, kernel)
 		josh_svm.fit(x_train_main, y_train_main)
 		predicted_k = josh_svm.predict(x_test)
@@ -81,4 +83,4 @@ def test(dataset):
 # Example test. Run in main file :)
 if __name__ == "__main__":
 	datasets = ['breast_cancer', 'digits', 'forest_mapping']
-	test(datasets[0])
+	test(datasets[2])
