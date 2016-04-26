@@ -260,6 +260,8 @@ def gauss_kernel(x, y):
 #
 ###
 def linear_kernel(x, y):
+	if (x.shape[0] != y.shape[0]):
+		y = y.T
 	return np.dot(x, y)
 
 ###
