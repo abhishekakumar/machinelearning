@@ -115,11 +115,11 @@ def test_visualization():
 
 	cut = 125
 
-	startx = -7.0
-	endx = 7.0
+	startx = -5.0
+	endx = 5.0
 
-	starty = -7.0
-	endy = 7.0
+	starty = -4.0
+	endy = 5.0
 
 	for i in range(cut):
 		x = startx + (endx-startx)/(cut-1) * i
