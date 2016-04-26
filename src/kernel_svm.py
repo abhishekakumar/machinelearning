@@ -164,17 +164,27 @@ class multiclass_svm:
 		self.M = M
 		self.train_x = train_x
 		self.train_y = train_y
+		# Hacky solution to speed up computation for the project
+		if (train_x.dtype == np.int64):
+			train_x = train_x.astype(np.int32, copy=False)
+		if (train_y.dtype == np.int64):
+			train_y = train_y.astype(np.int32, copy=False)
+		if (train_x.dtype == np.float64):
+			train_x = train_x.astype(np.float32, copy=False)
+		if (train_y.dtype == np.float64):
+			train_y = train_y.astype(np.float32, copy=False)
+
 		svms = []
 		for i in range(M):
 			# create SVM for class i
 			# (one-versus-all)
-			i_train_y = np.copy(train_y)
+			i_train_y = np.zeros ( (len(train_y), 1) )
 
 			# convert to 1 / -1 scheme
 			for j in range(N):
-				if (i_train_y[j] != float(i)):
+				if (train_y[j] != float(i)):
 					i_train_y[j] = -1.0
-				elif (i_train_y[j] == float(i)):
+				elif (train_y[j] == float(i)):
 					i_train_y[j] = 1.0
 
 			i_svm = kernel_svm(train_x, i_train_y, N, K, C, kernel)
@@ -224,8 +234,8 @@ class svm_estimator(BaseEstimator, ClassifierMixin):
 		self.K = K
 		self.M = M
 		self.backing_svm = multiclass_svm(
-			X.as_matrix().astype(int), 
-			y.as_matrix().astype(int), 
+			X.as_matrix().astype(float, copy=False), 
+			y.as_matrix().astype(float, copy=False), 
 			N, 
 			K, 
 			M+1, 
@@ -235,7 +245,7 @@ class svm_estimator(BaseEstimator, ClassifierMixin):
 		return self
 
 	def predict(self, X):
-		x_mat = X.as_matrix().astype(int)
+		x_mat = X.as_matrix().astype(float, copy=False)
 		to_classify = x_mat.shape[0]
 		out = np.zeros( (to_classify, 1) )
 		for i in range(to_classify):
