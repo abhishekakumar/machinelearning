@@ -1,8 +1,6 @@
 from sklearn.cross_validation import train_test_split
 from sklearn.cross_validation import cross_val_score
 from sklearn.cluster import KMeans
-from itertools import permutations
-from random import sample
 import matplotlib.pyplot as plt
 import numpy as np
 import datasets as ds
@@ -106,7 +104,6 @@ class k_means:
 
 
 def test_kmeans(dataset): 
-	#datasets = ['breast_cancer', 'digits', 'forest_mapping']
 	x_data, y_data = ds.retrieve_data_sets(dataset)
 	train_percentage = [0.1, 0.2, 0.3, 0.4, 0.5]
 
@@ -115,3 +112,4 @@ def test_kmeans(dataset):
 		learn_kmeans.plot_cross_validation()
 		learn_kmeans.classify_kmeans()
 		learn_kmeans.checkValidation()
+		
