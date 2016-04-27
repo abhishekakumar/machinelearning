@@ -81,15 +81,19 @@ Support Vector Machine, or henceforth SVM, is a supervised learning algorithm th
 ### Implementation
 
 For Implementation purposes here we have used scikit-learn's svm module in python. The implementation is based on libsvm. The fit time complexity is more than quadratic with the number of samples which makes it hard to scale to dataset with more than a couple of 10000 samples. The multiclass support is handled according to a one-vs-one scheme.The various parameters available in the module were:
-i) C values:  C is essentially a regularisation parameter, which controls the trade-off between achieving a low error on the training data and minimising the norm of the weights. Here we have tested a multitude of C values from 0.01 to 1000. We plot below the accuracy we get according to these C values.
+i) C values:  C is essentially a regularisation parameter, which controls the trade-off between achieving a low error on the training data and minimising the norm of the weights. Here we have tested a multitude of C values from 0.01 to 1000.
 ii) Kernel: Trying out multiple options, ‘rbf’ was chosen as it gives the best accuracy on test data. (‘rbf’ here stands for radial base function)
 iii) Others parameters are set to default.
+
+We plot below the accuracy we get according to the C values (as above) on Breast Cancer Wisconsin (Original) data set from the UCI Machine Learning repository.
 
 ![Accuracy vs C_values](http://i.imgur.com/d3COuTZ.png)
 
 ### Testing
 
 Data from all our datasets under consideration in divided into training and testing, ranging from 10% training / 90% testing to 50% training / 50% testing. C Value is chosen to giving the best accuracy score. We fit the SVM model on the training data and then try it on test data. The performance metric used is normalized accuracy_score. In this metric the set of labels produced must exactly match the corresponding set of label in its input. The associated plot is displayed.
+
+The accuracy vs. above training/test data percentages on the same dataset is plotted.
 
 ![Accuracy on Test State](http://i.imgur.com/EmjemQ8.png)
 
