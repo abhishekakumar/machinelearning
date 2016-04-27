@@ -9,6 +9,7 @@ import deeplearning as dl
 import pylab
 import kernel_svm_test
 import knn
+import kmeans
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -199,7 +200,12 @@ def classify(current_dataset):
     ##############################
     print 'K Nearest Neighbors'
     knn.test_knn(current_dataset)
-    
+
+    ##############################
+    #### K Nearest Neighbors #####
+    ##############################
+    print 'K-Means' 
+    kmeans.test_kmeans(current_dataset)
 
 if __name__ == "__main__":
     main()
