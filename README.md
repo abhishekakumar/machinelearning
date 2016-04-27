@@ -99,14 +99,38 @@ The accuracy vs. above training/test data percentages on the same dataset is plo
 
 
 ## K Nearest Neighbors
+### Introduction
+K Nearest Neighbors is a distance based classifier that labels incoming feature vectors based on the labels of the k nearest vectors provided in the training set.
 
+### Implementation
 The number of neighbors is cross validated to obtain the accuracies of using different numbers of neighbors.  From this, the optimal number of neighbors is chosen, k.  The incoming patterns are then classified by the majority of the class labels of the closest k feature vectors from the training set.
 
-## KMeans
+The accuracy versus the number of neighbors for the 30% training/50% test partition
+![Accuracy versus Neighbors](http://i.imgur.com/Wgcgq6N.png)
 
+### Testing
+Data from all our datasets under consideration in divided into training and testing, ranging from 10% training / 90% testing to 50% training / 50% testing. After fitting the model onto the training set, we compare the prediced class labels from the test set to the actual class labels.  
+The Misclassification Error:
+
+![KNN misclassification error](http://i.imgur.com/uGE1z8j.png)
+
+## KMeans
+### Introduction
+KMeans is a cluster based analysis that can be loosely related to KNN by using the comparison of the incoming feature vectors to the cluster centroids.  KMeans calculates centroid locations, which computationally, is NP-hard, and classifies incoming feature vector on the KNN comparison, where the number of neighbors is one.
+
+### Implementation
 The number of clusters is crossvalidated to obtain the accuracies of varying amounts of clusters, from one to the number of classes.  From this, the optimal number of clusters is chosen, k, and the centroids, $\mu_k$ of these clusters are saved.  More explicitly, $\mu_0$ is obtained by initializing the clusters, in this case, using sklearn's kmeans++; $\mu_{k+1}$ is obtained by iterateratively taking the means of the feature vectors in the updated cluster obtained from $\mu_k$.  This continues until either $\|\mu_{k+1} - \mu_k\| < 0.0001$ or the number of iterations reaches 300, whichever comes first.  
 
 The class labels of the incoming patterns are determined by the closest centroid.  That is, the class label of the closest centroid to the incoming pattern is assigned as that feature vector's class.
+
+The accuracy versus the number of neighbors for the 30% training/50% test partition
+![Accuracy versus Number of Clusters](http://i.imgur.com/DCgoqJg.png)
+
+### Testing
+Data from all our datasets under consideration in divided into training and testing, ranging from 10% training / 90% testing to 50% training / 50% testing. After fitting the model onto the training set, we compare the prediced class labels from the test set to the actual class labels.  
+The Misclassification Error:
+
+![Kmeans misclassification error](http://i.imgur.com/DCgoqJg.png)
 
 # Testing Methodology
 
