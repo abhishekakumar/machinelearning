@@ -8,6 +8,7 @@ from sklearn.base import BaseEstimator, ClusterMixin
 import pylab
 
 num_clusters = 1
+misclassification_error = []
 
 class joshkmeans(BaseEstimator, ClusterMixin):
 	def __init__(self):
@@ -100,7 +101,7 @@ class k_means:
 		for i in range(len(self.result)):
 			if self.result[i] != self.y_test[i]:
 				error += 1
-		print "Missclassification Error", (error/len(self.result))*100, "%"
+		misclassification_error.append(error/len(self.result))
 
 
 def test_kmeans(dataset): 
@@ -112,4 +113,11 @@ def test_kmeans(dataset):
 		learn_kmeans.plot_cross_validation()
 		learn_kmeans.classify_kmeans()
 		learn_kmeans.checkValidation()
-		
+
+    # plot misclassification error against training percentages
+	fig1 = plt.figure(figsize=(8, 6), dpi=80).add_subplot(111)
+	fig1.plot(train_percentage, misclassification_error)
+	fig1.set_xlabel('Training Percent')
+	fig1.set_ylabel('Misclassification Error')
+	fig1.set_title('KMeans - Misclassification Error', fontsize=12)
+	pylab.show()	

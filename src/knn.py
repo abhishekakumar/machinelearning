@@ -11,6 +11,7 @@ import pylab
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+misclassification_error = []
 
 class knn:
 	def __init__(self, dataset, train_percent):
@@ -67,8 +68,7 @@ class knn:
 		for i in range(len(self.result)):
 			if self.result[i] != self.y_test[i]:
 				error += 1
-		
-		print "Missclassified Error:", (error/len(self.y_test)) * 100, "%" 
+		misclassification_error.append(error/len(self.y_test))
 
 
 
@@ -84,3 +84,11 @@ def test_knn(dataset):
 		learn_knn.plot_cross_validation()
 		learn_knn.classify_knn()
 		learn_knn.checkValidation()
+
+    # plot misclassification error against training percentages
+	fig1 = plt.figure(figsize=(8, 6), dpi=80).add_subplot(111)
+	fig1.plot(train_percentage, misclassification_error)
+	fig1.set_xlabel('Training Percent')
+	fig1.set_ylabel('Misclassification Error')
+	fig1.set_title('KNN - Misclassification Error', fontsize=12)
+	pylab.show()
