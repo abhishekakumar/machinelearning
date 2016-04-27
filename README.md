@@ -81,7 +81,7 @@ Support Vector Machine, or henceforth SVM, is a supervised learning algorithm th
 ### Implementation
 
 For Implementation purposes here we have used scikit-learn's svm module in python. The implementation is based on libsvm. The fit time complexity is more than quadratic with the number of samples which makes it hard to scale to dataset with more than a couple of 10000 samples. The multiclass support is handled according to a one-vs-one scheme.The various parameters available in the module were:
-i) C values:  Here we have tested a multitude of C values from 0.01 to 1000. We plot below the accuracy we get according to these C values.
+i) C values:  C is essentially a regularisation parameter, which controls the trade-off between achieving a low error on the training data and minimising the norm of the weights. Here we have tested a multitude of C values from 0.01 to 1000. We plot below the accuracy we get according to these C values.
 ii) Kernel: Trying out multiple options, ‘rbf’ was chosen as it gives the best accuracy on test data. (‘rbf’ here stands for radial base function)
 iii) Others parameters are set to default.
 
