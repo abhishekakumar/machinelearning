@@ -74,6 +74,26 @@ To show that our implementation was indeed kernalized, we ran a visual experimen
 
 ## Support Vector Machine
 
+### Introduction
+
+Support Vector Machine, or henceforth SVM, is a supervised learning algorithm that analyzes data for classification. A SVM constructs a hyperplane or a set of hyperplanes in the D-dimesnional space for this classification. 
+
+### Implementation
+
+For Implementation purposes here we have used scikit-learn's svm module in python. The implementation is based on libsvm. The fit time complexity is more than quadratic with the number of samples which makes it hard to scale to dataset with more than a couple of 10000 samples. The multiclass support is handled according to a one-vs-one scheme.The various parameters available in the module were:
+i) C values:  Here we have tested a multitude of C values from 0.01 to 1000. We plot below the accuracy we get according to these C values.
+ii) Kernel: Trying out multiple options, ‘rbf’ was chosen as it gives the best accuracy on test data. (‘rbf’ here stands for radial base function)
+iii) Others parameters are set to default.
+
+[Accuracy vs C_values](http://i.imgur.com/d3COuTZ.png)
+
+### Testing
+
+Data from all our datasets under consideration in divided into training and testing, ranging from 10% training / 90% testing to 50% training / 50% testing. C Value is chosen to giving the best accuracy score. We fit the SVM model on the training data and then try it on test data. The performance metric used is normalized accuracy_score. In this metric the set of labels produced must exactly match the corresponding set of label in its input. The associated plot is displayed.
+
+[Accuracy on Test State](http://i.imgur.com/EmjemQ8.png)
+
+
 ## K Nearest Neighbors
 
 The number of neighbors is cross validated to obtain the accuracies of using different numbers of neighbors.  From this, the optimal number of neighbors is chosen, k.  The incoming patterns are then classified by the majority of the class labels of the closest k feature vectors from the training set.
