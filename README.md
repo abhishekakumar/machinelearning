@@ -85,13 +85,13 @@ i) C values:  Here we have tested a multitude of C values from 0.01 to 1000. We 
 ii) Kernel: Trying out multiple options, ‘rbf’ was chosen as it gives the best accuracy on test data. (‘rbf’ here stands for radial base function)
 iii) Others parameters are set to default.
 
-[Accuracy vs C_values](http://i.imgur.com/d3COuTZ.png)
+![Accuracy vs C_values](http://i.imgur.com/d3COuTZ.png)
 
 ### Testing
 
 Data from all our datasets under consideration in divided into training and testing, ranging from 10% training / 90% testing to 50% training / 50% testing. C Value is chosen to giving the best accuracy score. We fit the SVM model on the training data and then try it on test data. The performance metric used is normalized accuracy_score. In this metric the set of labels produced must exactly match the corresponding set of label in its input. The associated plot is displayed.
 
-[Accuracy on Test State](http://i.imgur.com/EmjemQ8.png)
+![Accuracy on Test State](http://i.imgur.com/EmjemQ8.png)
 
 
 ## K Nearest Neighbors
