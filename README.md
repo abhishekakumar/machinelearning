@@ -80,7 +80,7 @@ The number of neighbors is cross validated to obtain the accuracies of using dif
 
 ## KMeans
 
-The number of clusters is crossvalidated to obtain the accuracies of using between using a number of clusters in the range from one to the number of classes.  From this, the optimal number of clusters is chosen, k, and the centroids, $\mu_k$ of these clusters are saved.  More explicitly, $\mu_0$ is obtained by initializing the clusters, in this case, using sklearn's kmeans++, and $\mu_{k+1}$ iterateratively taking the means of the feature vectors in the updated cluster obtained from $\mu_k$.  This continues until either $\|\mu_{k+1} - \mu_k\| < 0.0001$ or the number of iterations reaches 300, whichever comes first.  
+The number of clusters is crossvalidated to obtain the accuracies of varying amounts of clusters, from one to the number of classes.  From this, the optimal number of clusters is chosen, k, and the centroids, $\mu_k$ of these clusters are saved.  More explicitly, $\mu_0$ is obtained by initializing the clusters, in this case, using sklearn's kmeans++, and $\mu_{k+1}$ iterateratively taking the means of the feature vectors in the updated cluster obtained from $\mu_k$.  This continues until either $\|\mu_{k+1} - \mu_k\| < 0.0001$ or the number of iterations reaches 300, whichever comes first.  
 
 The class labels of the incoming patterns are determined by the closest centroid.  That is, the class label of the closest cnetroid to the incoming pattern is assigned as that feature vector's class.
 
