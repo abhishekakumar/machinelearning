@@ -8,6 +8,7 @@ import datasets as ds
 import deeplearning as dl
 import pylab
 import kernel_svm_test
+import knn
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -72,7 +73,7 @@ def classify(current_dataset):
     # Check the accuracy on Test Dataset
 
     test_scores = []
-    C_choosen = C_values_by_dataset[current_dataset]
+    C_chosen = C_values_by_dataset[current_dataset]
     for train_percent in training_percentage:
         #     print "\nTraining Set Size : " + str(train_percent*100) + "%"
         # use the same random state
@@ -83,7 +84,7 @@ def classify(current_dataset):
             random_state=42
         )
 
-        svm_k = svm.SVC(C=C_choosen)
+        svm_k = svm.SVC(C=C_chosen)
         svm_k.fit(x_train_main, y_train_main)
         predicted_k = svm_k.predict(x_test)
         scores = metrics.accuracy_score(y_test, predicted_k)
@@ -192,6 +193,13 @@ def classify(current_dataset):
     ##############################
     print "----Running Custom Multi-Class Kernel SVM----"
     kernel_svm_test.test(current_dataset)
+
+    ##############################
+    #### K Nearest Neighbors #####
+    ##############################
+    print 'K Nearest Neighbors'
+    knn.test_knn(current_dataset)
+    
 
 if __name__ == "__main__":
     main()
