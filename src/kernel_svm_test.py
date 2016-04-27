@@ -55,7 +55,7 @@ def test(dataset):
 
 	# Now test with actually chosen C-values
 	test_scores = []
-	C_choosen = C_values_by_dataset[dataset]
+	C_chosen = C_values_by_dataset[dataset]
 	for train_percent in training_percentage:
 		x_train_main, x_test, y_train_main, y_test = train_test_split(
 			x_data,
@@ -63,8 +63,8 @@ def test(dataset):
 			test_size = 1 - train_percent,
 			random_state = 42,
 		)
-		print "Training with c_val: ", C_choosen, " on train_percent: ", train_percent
-		josh_svm = kernel_svm.svm_estimator(C_choosen, kernel)
+		print "Training with c_val: ", C_chosen, " on train_percent: ", train_percent
+		josh_svm = kernel_svm.svm_estimator(C_chosen, kernel)
 		josh_svm.fit(x_train_main, y_train_main)
 		predicted_k = josh_svm.predict(x_test)
 		scores = metrics.accuracy_score(y_test, predicted_k)
