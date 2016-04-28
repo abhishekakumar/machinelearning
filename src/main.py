@@ -202,7 +202,7 @@ def classify(current_dataset):
     knn.test_knn(current_dataset)
 
     ##############################
-    #### K Nearest Neighbors #####
+    #### K Means #####
     ##############################
     print 'K-Means'
     kmeans.test_kmeans(current_dataset)
