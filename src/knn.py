@@ -1,6 +1,7 @@
 from sklearn.cross_validation import train_test_split
 from sklearn.cross_validation import cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn import metrics
 from itertools import permutations
 from random import sample
 import matplotlib.pyplot as plt
@@ -40,6 +41,8 @@ class knn:
 		self.knn = KNeighborsClassifier(n_neighbors=self.num_neighbors)
 		self.knn.fit(self.x_train, self.y_train)
 		self.result = self.knn.predict(self.x_test)
+
+		misclassification_error.append(metrics.accuracy_score(self.y_test, self.result))
 		
 
 	def plot_cross_validation(self):
@@ -63,12 +66,6 @@ class knn:
 		fig1.set_title('KNN - neighbors vs accuracy', fontsize=12)
 		pylab.show()
 
-	def checkValidation(self):
-		error = 0.0
-		for i in range(len(self.result)):
-			if self.result[i] != self.y_test[i]:
-				error += 1
-		misclassification_error.append(error/len(self.y_test))
 
 
 
@@ -83,7 +80,6 @@ def test_knn(dataset):
 		learn_knn = knn(dataset, train_percent)
 		learn_knn.plot_cross_validation()
 		learn_knn.classify_knn()
-		learn_knn.checkValidation()
 
     # plot misclassification error against training percentages
 	fig1 = plt.figure(figsize=(8, 6), dpi=80).add_subplot(111)

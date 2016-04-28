@@ -1,5 +1,6 @@
 from sklearn.cross_validation import train_test_split
 from sklearn.cross_validation import cross_val_score
+from sklearn import metrics
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import numpy as np
@@ -73,13 +74,15 @@ class k_means:
 		k_means.fit(self.x_train, self.y_train)
 		self.result = k_means.predict(self.x_test)
 
+		misclassification_error.append(metrics.accuracy_score(self.y_test, self.result))
+
 	def plot_cross_validation(self):
 		k_fold_values = {'breast_cancer': 10, 'digits': 10, 'forest_mapping': 6}
 		cluster_scores = []
 
 		self.x_train = np.matrix(self.x_train)
 		self.y_train = np.matrix(self.y_train)
-		for n in range(1, len(self.class_list) + 1):
+		for n in range(1, self.num_of_classes + 1):
 			global num_clusters
 			num_clusters = n
 			k_means = joshkmeans()
@@ -90,19 +93,11 @@ class k_means:
 	    
         # plot number of clusters vs accuracy
 		fig1 = plt.figure(figsize=(8, 6), dpi=80).add_subplot(111)
-		fig1.plot((self.class_list + 1), cluster_scores)
+		fig1.plot(np.arange(1, self.num_of_classes + 1), cluster_scores)
 		fig1.set_xlabel('Number of Clusters')
 		fig1.set_ylabel('Mean Accuracy Score')
 		fig1.set_title('KMeans - clusters vs accuracy', fontsize=12)
 		pylab.show()
-
-	def checkValidation(self):
-		error = 0.0
-		for i in range(len(self.result)):
-			if self.result[i] != self.y_test[i]:
-				error += 1
-		misclassification_error.append(error/len(self.result))
-
 
 def test_kmeans(dataset): 
 	x_data, y_data = ds.retrieve_data_sets(dataset)
@@ -112,7 +107,6 @@ def test_kmeans(dataset):
 		learn_kmeans = k_means(dataset, train_percent)
 		learn_kmeans.plot_cross_validation()
 		learn_kmeans.classify_kmeans()
-		learn_kmeans.checkValidation()
 
     # plot misclassification error against training percentages
 	fig1 = plt.figure(figsize=(8, 6), dpi=80).add_subplot(111)
