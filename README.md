@@ -72,7 +72,7 @@ Deep learning is a branch of machine learning that attempts to model data in mul
 
 ### Implementation
 
-In this project we are using the Sequential implementation of Keras library, which contains linear stack of layers that encapsulates RNN model for deep learning. The method fit in Keras provides parameters like epoch, validation split, and callbacks which help to modify the LSTM system. Callbacks are methods which provides a view on the internal state and statistics of the model during training stage [13]. Validation split helps to adjust the fraction of data to be held-out as validation data. Epoch is the number of cycles the training data has to be moved through the system, as part of system learning. The input data is fed into the system in batches. The predict method predicts the output depending on the activation parameter, optimizer and batch-size parameter.
+In this project we are using the Sequential implementation of Keras library, which contains linear stack of layers that encapsulates RNN model for deep learning. The method fit in Keras provides parameters like epoch, validation split, and callbacks which help to modify the LSTM system. Callbacks are methods which provides a view on the internal state and statistics of the model during training stage. Validation split helps to adjust the fraction of data to be held-out as validation data. Epoch is the number of cycles the training data has to be moved through the system, as part of system learning. The input data is fed into the system in batches. The predict method predicts the output depending on the activation parameter, optimizer and batch-size parameter.
 The architecture of the model is the simplest one hidden layer – one input layer, one hidden layer and an output layer. The number of neurons in the hidden layer varies according to the dataset.
 
 #### Preprocessing
@@ -100,9 +100,13 @@ A random forest is a meta estimator that fits a number of decision tree classifi
 ### Implementation
 
 For Implementation purposes here we have used scikit-learn's RandomForestClassifier module in python. The various parameters available in the module were:
+
 i) n_estimators: n_estimators represent the number of trees in the forest. In general, the more the number of trees, the better the results. However, after a certain point, the improvement decreases as the number of trees increases. This is because the benefit in prediction performance from learning more trees will be lower than the cost in computation time for learning these additional trees. Here we have tested estimator values ranging from 10 to 1000.
-ii) max_depth: This parameter represents the maximum depth of the tree. If none max_depth value is provided, the nodes are expanded until all leaves are pure. We are testing max_depth values ranging from 5 to 200.
-iii) max_features: This parameter represents the number of features to consider when looking for the best split. max_features is not included as a free parameter as we noticed that the default auto option gives the best accuracy.
+
+ii) max_depth: This parameter represents the maximum depth of the tree. If no max_depth value is provided, the nodes are expanded until all leaves are pure. We are testing max_depth values ranging from 5 to 200.
+
+iii) max_features: This parameter represents the number of features to consider when looking for the best split; max_features is not included as a free parameter as we noticed that the default auto option gives the best accuracy.
+
 iv) Others parameters are set to default.
 
 The plots below show the accuracy vs the estimator and the max_depth values, for a 0.5 test train split, on the Breast Cancer Wisconsin (Original) data set from the UCI Machine Learning repository.
@@ -113,7 +117,7 @@ The plots below show the accuracy vs the estimator and the max_depth values, for
 
 ### Testing
 
-Data from all the datasets under consideration in divided into training and testing, ranging from 10% training / 90% testing to 50% training / 50% testing. The estimator and max_depth values are chosen based on the best accuracy score. We fit the Random Forests classifier on the training data and then try it on test data. The performance metric used is normalized accuracy_score. In this metric the set of labels produced must exactly match the corresponding set of label in its input. The associated plot is displayed.
+The datasets are divided into training sets and testing sets, ranging from 10% training / 90% testing to 50% training / 50% testing. The estimator and max_depth values are chosen based on the best accuracy score. We fit the Random Forests classifier on the training data and then apply it to test data. The performance metric used is the normalized accuracy_score. In this metric, the set of labels produced must exactly match the corresponding set of labels in its input. The associated plot is displayed.
 
 ![Accuracy on Test Set](http://i.imgur.com/RRNrJ1v.png)
 
@@ -123,13 +127,17 @@ The accuracy vs. above training/test data percentages on the same dataset is plo
 
 ### Introduction
 
-Support Vector Machine, or henceforth SVM, is a supervised learning algorithm that analyzes data for classification. A SVM constructs a hyperplane or a set of hyperplanes in the D-dimesnional space for this classification.
+Support Vector Machine, or henceforth SVM, is a supervised learning algorithm that analyzes data for classification. A SVM constructs a hyperplane or a set of hyperplanes in the D-dimensional space for this classification.
 
 ### Implementation
 
 For Implementation purposes here we have used scikit-learn's svm module in python. The implementation is based on libsvm. The fit time complexity is more than quadratic with the number of samples which makes it hard to scale to dataset with more than a couple of 10000 samples. The multiclass support is handled according to a one-vs-one scheme.The various parameters available in the module were:
-i) C values:  C is essentially a regularisation parameter, which controls the trade-off between achieving a low error on the training data and minimising the norm of the weights. Here we have tested a multitude of C values from 0.01 to 1000.
+
+i) C values:  C is a regularisation parameter that controls the trade-off between achieving a low error on the training 
+data and minimising the norm of the weights. Here we have tested a multitude of C values from 0.01 to 1000.
+
 ii) Kernel: Trying out multiple options, ‘rbf’ was chosen as it gives the best accuracy on test data. (‘rbf’ here stands for radial base function)
+
 iii) Others parameters are set to default.
 
 We plot below the accuracy we get according to the C values (as above) on Breast Cancer Wisconsin (Original) data set from the UCI Machine Learning repository.
@@ -138,7 +146,7 @@ We plot below the accuracy we get according to the C values (as above) on Breast
 
 ### Testing
 
-Data from all our datasets under consideration in divided into training and testing, ranging from 10% training / 90% testing to 50% training / 50% testing. C Value is chosen to giving the best accuracy score. We fit the SVM model on the training data and then try it on test data. The performance metric used is normalized accuracy_score. In this metric the set of labels produced must exactly match the corresponding set of label in its input. The associated plot is displayed.
+The datasets are divided into training sets and testing sets, ranging from 10% training / 90% testing to 50% training / 50% testing. The C Value is chosen from the results of the crossvalidation to obtain the highest accuracy score. We fit the SVM model on the training data and then apply it to test data. The performance metric used is the normalized accuracy_score. In this metric, the set of labels produced must exactly match the corresponding set of labels in its input. The associated plot is displayed.
 
 The accuracy vs. above training/test data percentages on the same dataset is plotted.
 
@@ -174,7 +182,7 @@ The accuracy versus the number of neighbors for the 30% training/50% test partit
 ![Accuracy versus Number of Clusters](http://i.imgur.com/I8RsDnJ.png)
 
 ### Testing
-Data from all our datasets under consideration in divided into training and testing, ranging from 10% training / 90% testing to 50% training / 50% testing. After fitting the model onto the training set, we compare the prediced class labels from the test set to the actual class labels.  
+The datasets are divided into training sets and testing sets, ranging from 10% training / 90% testing to 50% training / 50% testing. After fitting the model onto the training set, we compare the prediced class labels from the test set to the actual class labels.  
 The Accuracy Score:
 
 ![Kmeans accuracy](http://i.imgur.com/Llg0IEQ.png)
