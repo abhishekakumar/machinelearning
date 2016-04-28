@@ -70,6 +70,31 @@ To show that our implementation was indeed kernalized, we ran a visual experimen
 
 ## Neural Network
 
+### Introduction
+
+Deep learning is a branch of machine learning that attempts to model data in multiple processing layers. In its most general form it’s an artificial neural network architecture with densely connected layers.
+
+### Implementation
+
+In this project we are using the Sequential implementation of Keras library, which contains linear stack of layers that encapsulates RNN model for deep learning. The method fit in Keras provides parameters like epoch, validation split, and callbacks which help to modify the LSTM system. Callbacks are methods which provides a view on the internal state and statistics of the model during training stage [13]. Validation split helps to adjust the fraction of data to be held-out as validation data. Epoch is the number of cycles the training data has to be moved through the system, as part of system learning. The input data is fed into the system in batches. The predict method predicts the output depending on the activation parameter, optimizer and batch-size parameter.
+The architecture of the model is the simplest one hidden layer – one input layer, one hidden layer and an output layer. The number of neurons in the hidden layer varies according to the dataset.
+
+A.  Preprocessing
+
+Breast Cancer dataset: The breast cancer dataset is binary classification. The classes are represented as 2 and 4. So the classes are first converted into 0 and 1.
+
+Digit dataset: The digit dataset is multi class with classes 0 – 9. The classes are converted into an array using keras utils to_categorical() method. This method converts class vector (integers from 0 to nb_classes) to binary class matrix with 1 for particular class and 0 for rest.
+
+Forrest dataset: Forrest dataset is also multi class with classes d, h, s, o. The character classes are first converted to numeric classes with {'d ': 0, 'h ': 1, 's ': 2, 'o ': 3}. The numeric classes are then converted into an array using the same processing as digit dataset.
+
+B.  Details of Learning
+
+Breast Cancer dataset: The model is trained using rmspropagation optimizer with a batch size of 32, sigmoid activation of dense layer and binary cross entropy (log loss) as objective function. There are 64 neurons in the hidden layer. The model is trained for 20 epochs.
+
+Digit dataset: The model is trained using rmspropagation optimizer with a batch size of 32, sigmoid activation of dense layer and categorical cross entropy (log loss) as objective function as this is a multiclass classification. There are 512 neurons in the hidden layer. The model is trained for 20 epochs.
+
+Forest dataset: The model is trained using rmspropagation optimizer with a batch size of 32, sigmoid activation of dense layer and categorical cross entropy (log loss) as objective function as this is a multiclass classification. There are 512 neurons in the hidden layer. The model is trained for 20 epochs.
+
 ## Random Forests
 
 ### Introduction

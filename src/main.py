@@ -54,7 +54,7 @@ def classify(current_dataset):
         )
 
         for c_val in c_values:
-            svm_k = svm.SVC(C=c_val)
+            svm_k = svm.SVC(C=c_val,kernel = 'linear')
             scores = cross_val_score(svm_k, x_train_main, y_train_main, cv=k_fold_values[current_dataset],
                                      scoring='accuracy')
             c_scores.append(scores.mean())
@@ -85,7 +85,7 @@ def classify(current_dataset):
             random_state=42
         )
 
-        svm_k = svm.SVC(C=C_chosen)
+        svm_k = svm.SVC(C=C_chosen, kernel='linear')
         svm_k.fit(x_train_main, y_train_main)
         predicted_k = svm_k.predict(x_test)
         scores = metrics.accuracy_score(y_test, predicted_k)
@@ -204,7 +204,7 @@ def classify(current_dataset):
     ##############################
     #### K Nearest Neighbors #####
     ##############################
-    print 'K-Means' 
+    print 'K-Means'
     kmeans.test_kmeans(current_dataset)
 
 if __name__ == "__main__":
