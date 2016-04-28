@@ -38,8 +38,6 @@ def get_digits_data():
     # X = []
     # y = []
 
-    # the logic below is used to read the *-orig.tra files
-
     # with open(os.path.join(subfolder, 'optdigits-orig.tra'), 'r') as text_file:
     #     for line in text_file:
     #         if line.startswith('0') or line.startswith('1'):
@@ -65,22 +63,14 @@ def get_digits_data():
 
 
 def get_forest_data():
-    x_data, y_data = forest_data_set()
-
-    x_data_norm = (x_data - x_data.mean()) / (x_data.max() - x_data.min())
-    return x_data_norm, y_data
-
-
-def retrieve_forest_data_dl():
-    return forest_data_set()
-
-
-def forest_data_set():
     subfolder = 'train_data/forest_mapping'
     forest_data = pd.read_csv(os.path.join(subfolder, 'training.csv'), sep=",", header=0)
+
     forest_data['numeric_class'] = forest_data.apply(lambda row: nc.get_numeric_class(row), axis=1)
     x_data = forest_data.ix[:, 1:28]
     y_data = forest_data.ix[:, 28]
     y_data = pd.DataFrame(y_data)
     y_data.columns = ['class']
+
+    #x_data_norm = (x_data - x_data.mean()) / (x_data.max() - x_data.min())
     return x_data, y_data
