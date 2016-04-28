@@ -68,7 +68,6 @@ class knn:
 
 
 
-
 def test_knn(dataset):  
 	x_data, y_data = ds.retrieve_data_sets(dataset)
 	k_fold_values = {'breast_cancer': 10, 'digits': 10, 'forest_mapping': 6}
