@@ -68,7 +68,6 @@ class knn:
 
 
 
-
 def test_knn(dataset):  
 	x_data, y_data = ds.retrieve_data_sets(dataset)
 	k_fold_values = {'breast_cancer': 10, 'digits': 10, 'forest_mapping': 6}
@@ -85,6 +84,7 @@ def test_knn(dataset):
 	fig1 = plt.figure(figsize=(8, 6), dpi=80).add_subplot(111)
 	fig1.plot(train_percentage, misclassification_error)
 	fig1.set_xlabel('Training Percent')
-	fig1.set_ylabel('Misclassification Error')
-	fig1.set_title('KNN - Misclassification Error', fontsize=12)
+	fig1.set_ylabel('Accuracy')
+	fig1.set_title('KNN - Accuracy', fontsize=12)
 	pylab.show()
+	

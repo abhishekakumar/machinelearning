@@ -112,6 +112,6 @@ def test_kmeans(dataset):
 	fig1 = plt.figure(figsize=(8, 6), dpi=80).add_subplot(111)
 	fig1.plot(train_percentage, misclassification_error)
 	fig1.set_xlabel('Training Percent')
-	fig1.set_ylabel('Misclassification Error')
-	fig1.set_title('KMeans - Misclassification Error', fontsize=12)
+	fig1.set_ylabel('Accuracy')
+	fig1.set_title('KMeans - Accuracy', fontsize=12)
 	pylab.show()	
