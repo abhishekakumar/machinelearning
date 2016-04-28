@@ -191,10 +191,22 @@ The Accuracy Score:
 
 We are using the breast-cancer-wisconsin.data file as our training data. The following are the features present in this dataset, id, thickness, cell_size, cell_shape, adhesion, single_cell_size, nuclei, chromatin, nucleoli, mitoses, class. Since this data set has some missing values in the nuclei column, we replace those missing values by the mean of the column.
 
+![Table 1 : Accuracy Scores on Breast Cancer Wisconsin (Original)](http://imgur.com/r4M32UK.png)
+
+![Accuracy vs training percentage - breast cancer data](http://i.imgur.com/0fe0y7Z.png)
+
 ## Optical recognition of handwritten digits – original
 
 As part of this dataset, we are using the optdigits.tra.txt as our training data file. The first 64 column vectors are used as the X values, while the last column is used as the concept class.
 
+![Table 2 : Accuracy Scores on Optical Recognition of Handwritten Digits](http://imgur.com/XAL0x4W.png)
+
+![Accuracy vs training percentage - digits data](http://i.imgur.com/dJ2e8YK.png)
+
 ## Forest type mapping
 
 We are using the training.csv file as the training data file. Since the concept classes in this data set are alphabets, we map them to numeric values, 0,1,2,3 in the numeric_class.py file. Moreover, there is wide variation in the range of the data for the different features in this data set. While some features have values ranging from the lower negative to high positives, other features just have higher positive values, with no negative values. So, prior to using the data to train the SVM and Random Forest classifiers, we normalize it using the equation x_norm = (x – mean(column)) / (max(column) – min (column)). Doing so, the accuracy increases from lower 40’s to high 90’s.
+
+![Table 3 : Accuracy Scores on Forest Type Mapping](http://imgur.com/WPzxjao.png)
+
+![Accuracy vs training percentage - forest mapping data](http://i.imgur.com/5uH9qBA.png)
