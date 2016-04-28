@@ -1,7 +1,3 @@
-# CAP6610 - Machine Learning Course Project
-Written by **Jennifer Cheung**, **Joshua Kirstein**, **Abhishek Kumar**, **Abhishek Mohanty**, and **Abhinav Rathi**.
-
-
 # Installation
 
 To run the code samples in this project, python and some extra libraries are required. To install the libraries run the following commands:
@@ -79,7 +75,7 @@ Deep learning is a branch of machine learning that attempts to model data in mul
 In this project we are using the Sequential implementation of Keras library, which contains linear stack of layers that encapsulates RNN model for deep learning. The method fit in Keras provides parameters like epoch, validation split, and callbacks which help to modify the LSTM system. Callbacks are methods which provides a view on the internal state and statistics of the model during training stage [13]. Validation split helps to adjust the fraction of data to be held-out as validation data. Epoch is the number of cycles the training data has to be moved through the system, as part of system learning. The input data is fed into the system in batches. The predict method predicts the output depending on the activation parameter, optimizer and batch-size parameter.
 The architecture of the model is the simplest one hidden layer – one input layer, one hidden layer and an output layer. The number of neurons in the hidden layer varies according to the dataset.
 
-#### A.  Preprocessing
+#### Preprocessing
 
 Breast Cancer dataset: The breast cancer dataset is binary classification. The classes are represented as 2 and 4. So the classes are first converted into 0 and 1.
 
@@ -87,7 +83,7 @@ Digit dataset: The digit dataset is multi class with classes 0 – 9. The classe
 
 Forrest dataset: Forrest dataset is also multi class with classes d, h, s, o. The character classes are first converted to numeric classes with {'d ': 0, 'h ': 1, 's ': 2, 'o ': 3}. The numeric classes are then converted into an array using the same processing as digit dataset.
 
-#### B.  Details of Learning
+#### Details of Learning
 
 Breast Cancer dataset: The model is trained using rmspropagation optimizer with a batch size of 32, sigmoid activation of dense layer and binary cross entropy (log loss) as objective function. There are 64 neurons in the hidden layer. The model is trained for 20 epochs.
 
@@ -183,8 +179,6 @@ The Accuracy Score:
 
 ![Kmeans accuracy](http://i.imgur.com/Llg0IEQ.png)
 
-# Testing Methodology
-
 # Data sets
 
 ## Breast Cancer Wisconsin (Original)
@@ -210,3 +204,27 @@ We are using the training.csv file as the training data file. Since the concept 
 ![Table 3 : Accuracy Scores on Forest Type Mapping](http://imgur.com/WPzxjao.png)
 
 ![Accuracy vs training percentage - forest mapping data](http://i.imgur.com/5uH9qBA.png)
+
+# Individual Contributions
+
+Each team member worked on data set preparation and the document we are submitting.
+
+## Jennifer Cheung
+
+Wrote the testing rig and implementation of k-means and k-nearest neighbor.
+
+## Joshua Kirstein
+
+Wrote the custom multi-class kernel SVM implementation as well as tested it.
+
+## Abhishek Kumar
+
+Wrote the testing rig and implementation of neural networks using scikit NN.
+
+## Abhishek Mohanty
+
+Wrote the testing rig and implementation of random forests using scikit.
+
+## Abhinav Rathi
+
+Wrote the testing rig and implementation of SVM using scikit.
