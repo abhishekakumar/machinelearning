@@ -7,6 +7,7 @@ import numpy as np
 import datasets as ds
 from sklearn.base import BaseEstimator, ClusterMixin
 import pylab
+from sklearn.metrics import roc_curve, auc, roc_auc_score
 
 num_clusters = 1
 misclassification_error = []
@@ -73,7 +74,8 @@ class k_means:
 		k_means = joshkmeans()
 		k_means.fit(self.x_train, self.y_train)
 		self.result = k_means.predict(self.x_test)
-
+		roc_auc = roc_auc_score(self.y_test, self.result)
+		print roc_auc
 		misclassification_error.append(metrics.accuracy_score(self.y_test, self.result))
 
 	def plot_cross_validation(self):
@@ -90,7 +92,7 @@ class k_means:
 			cluster_scores.append(scores.mean())
 
 		num_clusters = cluster_scores.index(max(cluster_scores)) + 1
-	    
+
         # plot number of clusters vs accuracy
 		fig1 = plt.figure(figsize=(8, 6), dpi=80).add_subplot(111)
 		fig1.plot(np.arange(1, self.num_of_classes + 1), cluster_scores)
@@ -99,11 +101,11 @@ class k_means:
 		fig1.set_title('KMeans - clusters vs accuracy', fontsize=12)
 		pylab.show()
 
-def test_kmeans(dataset): 
+def test_kmeans(dataset):
 	x_data, y_data = ds.retrieve_data_sets(dataset)
 	train_percentage = [0.1, 0.2, 0.3, 0.4, 0.5]
 
-	for train_percent in train_percentage:       
+	for train_percent in train_percentage:
 		learn_kmeans = k_means(dataset, train_percent)
 		learn_kmeans.plot_cross_validation()
 		learn_kmeans.classify_kmeans()
@@ -114,4 +116,4 @@ def test_kmeans(dataset):
 	fig1.set_xlabel('Training Percent')
 	fig1.set_ylabel('Accuracy')
 	fig1.set_title('KMeans - Accuracy', fontsize=12)
-	pylab.show()	
+	pylab.show()

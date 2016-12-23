@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import datasets as ds
 import pylab
+from sklearn.metrics import roc_curve, auc, roc_auc_score
 
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -41,9 +42,10 @@ class knn:
 		self.knn = KNeighborsClassifier(n_neighbors=self.num_neighbors)
 		self.knn.fit(self.x_train, self.y_train)
 		self.result = self.knn.predict(self.x_test)
-
+		roc_auc = roc_auc_score(self.y_test, self.result)
+		print roc_auc
 		misclassification_error.append(metrics.accuracy_score(self.y_test, self.result))
-		
+
 
 	def plot_cross_validation(self):
 		k_fold_values = {'breast_cancer': 10, 'digits': 10, 'forest_mapping': 6}
@@ -57,7 +59,7 @@ class knn:
 
 		#Return the number of neighbors corresponding to the max class_score
 		self.num_neighbors = class_scores.index(max(class_scores)) + 1
-	
+
 	    # plot number of Neighbors vs accuracy
 		fig1 = plt.figure(figsize=(8, 6), dpi=80).add_subplot(111)
 		fig1.plot(np.arange(1, self.num_of_classes + 1), class_scores)
@@ -68,14 +70,14 @@ class knn:
 
 
 
-def test_knn(dataset):  
+def test_knn(dataset):
 	x_data, y_data = ds.retrieve_data_sets(dataset)
 	k_fold_values = {'breast_cancer': 10, 'digits': 10, 'forest_mapping': 6}
 	train_percentage = [0.1, 0.2, 0.3, 0.4, 0.5]
 
 
 	# Iterate through the training percentages
-	for train_percent in train_percentage:       
+	for train_percent in train_percentage:
 		learn_knn = knn(dataset, train_percent)
 		learn_knn.plot_cross_validation()
 		learn_knn.classify_knn()
@@ -87,4 +89,4 @@ def test_knn(dataset):
 	fig1.set_ylabel('Accuracy')
 	fig1.set_title('KNN - Accuracy', fontsize=12)
 	pylab.show()
-	
+
